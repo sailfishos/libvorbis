@@ -1,0 +1,28 @@
+* Thu Jun 24 2010 Vivian Zhang <vivian.zhang@intel.com> - 1.3.1
+- Update to 1.3.1
+
+* Sat Feb 27 2010 Anas Nashif <anas.nashif@intel.com> - 1.2.3
+- Updated with latest spectacle
+- Include YAML file in source rpm
+
+* Thu Aug 20 2009 Bin Gao <bin.gao@intel.com> 1.2.3
+- Upgrade to 1.2.3
+
+* Thu Jan 22 2009 Passion Zhao <passion.zhao@intel.com> 1.2.0-2
+- Fix CVE-2008-1419, CVE-2008-1420, CVE-2008-1423
+
+* Fri Jan 09 2009 Rusty Lynch <rusty.lynch@intel.com> 1.2.0
+- Adding static libs to the development package
+
+* Tue Dec 16 2008 Anas Nashif <anas.nashif@intel.com> 1.2.0
+- Update spec file using latest spec-builder
+
+* Tue Dec 16 2008 Anas Nashif <anas.nashif@intel.com> 1.2.0
+- Fixed rpmlint errors in Summary tag
+
+* Tue Dec 16 2008 Anas Nashif <anas.nashif@intel.com> 1.2.0
+- Update spec file using latest spec-builder
+
+* Thu Dec 08 2008 Rusty Lynch <rusty.lynch@intel.com> - 1.2.0-1
+- Creating a 1.2.0-1 release 
+

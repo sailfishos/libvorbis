@@ -1,0 +1,17 @@
+Name: libvorbis
+Summary: The Vorbis General Audio Compression Codec
+Version: 1.3.1
+Release: 1
+Group: System/Libraries
+License: BSD
+URL: http://www.xiph.org/
+Sources:
+    - http://downloads.xiph.org/releases/vorbis/%{name}-%{version}.tar.gz
+
+PkgConfigBR:
+    - ogg
+SubPackages:
+    - Name: devel
+      Summary: Development tools for Vorbis applications
+      Group: Development/Libraries
+
