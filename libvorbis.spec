@@ -16,6 +16,7 @@ License:    BSD
 URL:        http://www.xiph.org/
 Source0:    http://downloads.xiph.org/releases/vorbis/%{name}-%{version}.tar.xz
 Source100:  libvorbis.yaml
+Patch0:     libvorbis-aarch64.patch
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  pkgconfig(ogg)
@@ -37,6 +38,8 @@ Requires:   %{name} = %{version}-%{release}
 %prep
 %setup -q -n %{name}-%{version}
 
+# libvorbis-aarch64.patch
+%patch0 -p1
 # >> setup
 # << setup
 

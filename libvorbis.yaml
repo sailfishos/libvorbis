@@ -9,6 +9,8 @@ License: BSD
 URL: http://www.xiph.org/
 Sources:
     - http://downloads.xiph.org/releases/vorbis/%{name}-%{version}.tar.xz
+Patches:
+    - libvorbis-aarch64.patch
 
 PkgConfigBR:
     - ogg
