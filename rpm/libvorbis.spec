@@ -1,6 +1,6 @@
 Name:       libvorbis
 Summary:    The Vorbis General Audio Compression Codec
-Version:    1.3.5
+Version:    1.3.6
 Release:    1
 Group:      System/Libraries
 License:    BSD
@@ -28,8 +28,8 @@ Requires:   %{name} = %{version}-%{release}
 
 
 %build
-
-%autogen --disable-static
+%autogen
+%configure --disable-static
 make %{?jobs:-j%jobs}
 
 
@@ -45,7 +45,7 @@ rm -rf %{buildroot}/%{_docdir}
 %files
 %defattr(-,root,root,-)
 # >> files
-%doc AUTHORS COPYING README
+%doc AUTHORS COPYING README.md
 %{_libdir}/libvorbis.so.*
 %{_libdir}/libvorbisfile.so.*
 %{_libdir}/libvorbisenc.so.*
