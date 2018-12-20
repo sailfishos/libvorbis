@@ -9,6 +9,7 @@ Source0:    http://downloads.xiph.org/releases/vorbis/%{name}-%{version}.tar.xz
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  pkgconfig(ogg)
+BuildRequires:  libtool
 
 %description
 %{summary}.
@@ -23,6 +24,15 @@ Requires:   %{name} = %{version}-%{release}
 %{summary}.
 
 
+%package doc
+Summary:   Documentation for %{name}
+Group:     Documentation
+Requires:  %{name} = %{version}-%{release}
+
+%description doc
+%{summary}.
+
+
 %prep
 %setup -q -n %{name}-%{version}/upstream
 
@@ -30,13 +40,13 @@ Requires:   %{name} = %{version}-%{release}
 %build
 %autogen
 %configure --disable-static
-make %{?jobs:-j%jobs}
+make %{_smp_mflags}
 
 
 %install
 rm -rf %{buildroot}
 %make_install
-rm -rf %{buildroot}/%{_docdir}
+install -m0644 -t %{buildroot}/%{_docdir}/%{name}-*/ AUTHORS README.md
 
 %post -p /sbin/ldconfig
 
@@ -45,7 +55,7 @@ rm -rf %{buildroot}/%{_docdir}
 %files
 %defattr(-,root,root,-)
 # >> files
-%doc AUTHORS COPYING README.md
+%license COPYING
 %{_libdir}/libvorbis.so.*
 %{_libdir}/libvorbisfile.so.*
 %{_libdir}/libvorbisenc.so.*
@@ -61,3 +71,7 @@ rm -rf %{buildroot}/%{_docdir}
 %{_libdir}/pkgconfig/*.pc
 %{_datadir}/aclocal/vorbis.m4
 # << files devel
+
+%files doc
+%defattr(-, root, root)
+%doc %{_docdir}/%{name}-*/*
