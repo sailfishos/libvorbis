@@ -1,11 +1,10 @@
 Name:       libvorbis
 Summary:    The Vorbis General Audio Compression Codec
-Version:    1.3.6
+Version:    1.3.7
 Release:    1
-Group:      System/Libraries
 License:    BSD
-URL:        http://www.xiph.org/
-Source0:    http://downloads.xiph.org/releases/vorbis/%{name}-%{version}.tar.xz
+URL:        https://www.xiph.org/
+Source0:    %{name}-%{version}.tar.bz2
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  pkgconfig(ogg)
@@ -17,7 +16,6 @@ BuildRequires:  libtool
 
 %package devel
 Summary:    Development tools for Vorbis applications
-Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
 
 %description devel
@@ -26,7 +24,7 @@ Requires:   %{name} = %{version}-%{release}
 
 %package doc
 Summary:   Documentation for %{name}
-Group:     Documentation
+BuildArch: noarch
 Requires:  %{name} = %{version}-%{release}
 
 %description doc
@@ -34,19 +32,17 @@ Requires:  %{name} = %{version}-%{release}
 
 
 %prep
-%setup -q -n %{name}-%{version}/upstream
-
+%autosetup -n %{name}-%{version}/upstream
 
 %build
-%autogen
-%configure --disable-static
-make %{_smp_mflags}
-
+%reconfigure --disable-static
+%make_build
 
 %install
-rm -rf %{buildroot}
 %make_install
-install -m0644 -t %{buildroot}/%{_docdir}/%{name}-*/ AUTHORS README.md
+
+%check
+make check
 
 %post -p /sbin/ldconfig
 
@@ -54,24 +50,21 @@ install -m0644 -t %{buildroot}/%{_docdir}/%{name}-*/ AUTHORS README.md
 
 %files
 %defattr(-,root,root,-)
-# >> files
 %license COPYING
 %{_libdir}/libvorbis.so.*
 %{_libdir}/libvorbisfile.so.*
 %{_libdir}/libvorbisenc.so.*
-# << files
 
 %files devel
 %defattr(-,root,root,-)
-# >> files devel
 %{_includedir}/vorbis
 %{_libdir}/libvorbis.so
 %{_libdir}/libvorbisfile.so
 %{_libdir}/libvorbisenc.so
 %{_libdir}/pkgconfig/*.pc
 %{_datadir}/aclocal/vorbis.m4
-# << files devel
 
 %files doc
 %defattr(-, root, root)
-%doc %{_docdir}/%{name}-*/*
+%doc AUTHORS README.md
+%{_docdir}/%{name}-*/
